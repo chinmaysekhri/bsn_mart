@@ -1,0 +1,76 @@
+@extends('admin.layouts.app')
+@section('title','Role Detail')
+@section('content')
+
+<div x-data="form">
+	<ul class="flex space-x-2 rtl:space-x-reverse">
+		<li>
+			<a href="{{ route('roles.index') }}" class="text-primary hover:underline">Roles</a>
+		</li>
+		<li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+			<span> Role Detail</span>
+		</li>
+	</ul>
+	<div class="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-1">
+
+		
+		<!-- Grid -->
+		<div class="panel">
+			<div class="mb-5 flex items-center justify-between">
+				<h5 class="text-lg font-semibold dark:text-white-light">Role Detail</h5>
+			</div>
+			<div class="mb-5">
+			
+		@if (count($errors) > 0)
+	        <div class="flex items-center p-3.5 rounded text-danger bg-danger-light dark:bg-danger-dark-light">
+                   <span class="ltr:pr-2 rtl:pl-2"><strong class="ltr:mr-1 rtl:ml-1">Whoops!</strong>There were some problems with your input.
+		         <ul>
+					@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach
+			      </ul>
+	
+	
+	             </span>
+
+				<button type="button" class="ltr:ml-auto rtl:mr-auto hover:opacity-80">
+					<svg> ... </svg>
+				</button>
+			</div>
+		    @endif
+				
+					<div class="grid grid-cols-1 gap-4 sm:grid-cols-1">
+						<div>
+							<label for="gridEmail">
+							  <strong>Name:</strong>
+                              {{ $role->name }}
+							</label>
+							
+						</div>
+						
+					</div>
+					
+					
+					<div class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-1">
+						<div class="md:col-span-2">
+							<label for="gridCity">
+							   <strong>Permissions:</strong> &nbsp;
+								@if(!empty($rolePermissions))
+									@foreach($rolePermissions as $v)
+										<span class="badge bg-success" style="margin:5px; display:inline-flex">{{ $v->name }} </span> &nbsp;&nbsp;
+									@endforeach
+								@endif
+							</label>
+
+						</div>
+					</div>
+	
+			</div>
+
+		</div>
+
+		
+	</div>
+</div>
+                                            
+@endsection
