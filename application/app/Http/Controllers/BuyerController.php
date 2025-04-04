@@ -135,9 +135,13 @@ class BuyerController extends Controller
             $data = $data_collection->paginate($per_page);
         } else {
 
-            $data = $data_collection->where('managed_by', '=', $auth_user->id)
-                ->orWhere('created_by', '=', $auth_user->id)->paginate($per_page);
+            $data = $data_collection->where(function ($query) use ($auth_user) {
+                $query->where('managed_by', '=', $auth_user->id)
+                      ->orWhere('created_by', '=', $auth_user->id);
+            })->paginate($per_page);
         }
+        
+       
 
         $requested_input = $request->all();
 
