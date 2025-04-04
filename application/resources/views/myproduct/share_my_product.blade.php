@@ -217,7 +217,7 @@ body {
             <div>
 			@if($product->dont_show_price =='No')
            
-	        <p class="mb-0 small"><b>₹</b>&nbsp;{{ $product->price }} /- {{$product->packaging_charges}}</p>
+	        <p class="mb-0 small"><b>₹</b>&nbsp;{{ $product->seller_price }} /- {{$product->packaging_charges}}</p>
 		    @else
 		    
 		    <p class="mb-0 small"></p>
