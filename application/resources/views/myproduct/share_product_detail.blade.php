@@ -315,7 +315,7 @@ body {
          <p class = "new-price">Brand : <span>{{$productDetail->other_brand}}</span></p>
          @endif
          
-        <p class = "new-price">price : <b>₹</b>&nbsp;<span>{{$productDetail->seller_price}} /- {{$productDetail->packaging_charges}}</span></p>
+        <p class = "new-price">price : <b>₹</b>&nbsp;<span>{{$productDetail->price}} /- {{$productDetail->packaging_charges}}</span></p>
      
         <p class = "new-price">Model No : &nbsp;<span>{{$productDetail->model_number}}</span></p>
       
