@@ -512,11 +512,14 @@ class EmployeeController extends Controller
         $auth_user = Auth::user();
         $is_admin = $auth_user->for;
         $is_designation  = $auth_user->designation;
-        //$employ    = Employee::find($id);
         $employ    = Employee::select('employees.*', 'users.emp_id as user_emp_id', 'users.id as user_id')
             ->join('users', 'employees.managed_by', '=', 'users.id')
             ->where('employees.id', '=', $id)
             ->first();
+        if (empty($employ)) {
+      //      $employ    = Employee::find($id);
+        }
+
         $designationData = Designation::orderBy('designation_name', 'DESC')->get();
         /* 		
         //23-05-2024
@@ -623,7 +626,7 @@ class EmployeeController extends Controller
         if (!empty($emp_user)) {
             $input['managed_by'] = $emp_user->id;
         } else {
-            $input['managed_by'] = $auth_user->id;
+            $input['managed_by'] = $request->managed_by;
         }
         //dd($input);
         if ($request->hasfile('resume')) {
